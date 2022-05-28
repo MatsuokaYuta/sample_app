@@ -1,7 +1,7 @@
 <h1>投稿一覧</h1>
 
 <% @posts.each do |post| %>
-    <p><%= post.content %></p>
+    <p><%= link_to(post.content, "/posts/#{post.id}") %></p>
 <% end %>
 
 <%= link_to("トップへ", "/") =%>
