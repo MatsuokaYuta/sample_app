@@ -1,4 +1,5 @@
 <p><%= @post.content %></p>
 <p><%= @post.created_at %></p>
+<%= link_to("編集", "/posts/#{@post.id}/edit") =%>
 
 <%= link_to("トップへ", "/") =%>
