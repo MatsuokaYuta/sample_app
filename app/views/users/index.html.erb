@@ -1,7 +1,7 @@
 <h1>ユーザー一覧</h1>
 
 <% @users.each do |user| %>
-    <p><%= user.name %></p>
+    <p><%= link_to(user.name, "/users/#{user.id}") %></p>
 <% end %>
 
 <%= link_to("トップへ", "/") =%>
