@@ -1,5 +1,10 @@
 <h1>ユーザー一覧</h1>
 
+<!--サクセスメッセージを表示-->
+<% if flash[:notice]%>
+    <%= flash[:notice] %>
+<% end %>
+
 <% @users.each do |user| %>
     <p><%= link_to(user.name, "/users/#{user.id}") %></p>
 <% end %>
