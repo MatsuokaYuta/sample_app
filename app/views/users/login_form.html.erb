@@ -1,5 +1,10 @@
 <h1>ログイン</h1>
 
+<!--サクセスメッセージを表示-->
+<% if flash[:notice]%>
+    <%= flash[:notice] %>
+<% end %>
+
 <% if @error_message %>
     <%= @error_message %>
 <% end %>

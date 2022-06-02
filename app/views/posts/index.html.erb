@@ -8,5 +8,3 @@
 <% @posts.each do |post| %>
     <p><%= link_to(post.content, "/posts/#{post.id}") %></p>
 <% end %>
-
-<%= link_to("トップへ", "/") =%>
