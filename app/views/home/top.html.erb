@@ -1,10 +1,15 @@
 <h1>sample_app</h1>
-<%= link_to("ログイン", "#") =%>
 
-<%= link_to("新規登録", "/signup") =%>
-
-<%= link_to("投稿一覧（仮）", "/posts/index") =%>
-
-<%= link_to("新規投稿（仮）", "/posts/new") =%>
-
-<%= link_to("ユーザー一覧（仮）", "/users/index") =%>
+<% if session[:user_id] %>
+    <%= link_to("投稿一覧（仮）", "/posts/index") %>
+    
+    <%= link_to("新規投稿（仮）", "/posts/new") %>
+    
+    <%= link_to("ユーザー一覧（仮）", "/users/index") %>
+    
+    <%= link_to("ログアウト", "/logout", {method: "post"}) %>
+<% else %>
+    <%= link_to("新規登録", "/signup") %>
+    
+    <%= link_to("ログイン", "/login") %>
+<% end %>
