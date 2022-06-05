@@ -10,11 +10,11 @@
 <% end %>
 
 <%= form_tag("/login") do %>
-    <p>メールアドレス</p>
-    <input name="email" value="<%= @email %>">
+    <p>ユーザー名</p>
+    <input name="name" value="<%= @name %>">
     <p>パスワード</p>
     <input type="password" name="password" value="<%= @password %>">
     <input type="submit" value="ログイン">
 <% end %>
 
-<%= link_to("トップへ", "/") =%>
+<%= link_to("キャンセル", "/") =%>
