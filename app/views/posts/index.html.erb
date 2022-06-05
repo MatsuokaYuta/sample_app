@@ -6,6 +6,6 @@
 <% end %>
 
 <% @posts.each do |post| %>
-    <p><%= link_to(post.user.name, "/users/#{post.user.id}") %></p>
+    <p><%= link_to("●#{post.user.name}", "/users/#{post.user.id}") %></p>
     <p><%= link_to(post.content, "/posts/#{post.id}") %></p>
 <% end %>
