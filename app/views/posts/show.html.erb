@@ -1,7 +1,8 @@
+<p><%= link_to(@user.name, "/users/#{@user.id}") %></p>
 <p><%= @post.content %></p>
 <p><%= @post.created_at %></p>
-<%= link_to("編集", "/posts/#{@post.id}/edit") =%>
+<%= link_to("編集", "/posts/#{@post.id}/edit") %>
 
-<%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) =%>
+<%= link_to("削除", "/posts/#{@post.id}/destroy", {method: "post"}) %>
 
-<%= link_to("トップへ", "/") =%>
+<%= link_to("トップへ", "/") %>
