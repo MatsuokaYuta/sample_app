@@ -8,5 +8,3 @@
 <% @users.each do |user| %>
     <p><%= link_to(user.name, "/users/#{user.id}") %></p>
 <% end %>
-
-<%= link_to("戻る", "/posts/index") =%>

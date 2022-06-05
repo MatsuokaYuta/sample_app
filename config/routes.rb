@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "administrayor_login" => "users#administrayor_login_form"
+  post "administrayor_login" => "users#administrayor_login"
+  
   post "logout" => "users#logout"
   post "login" => "users#login"
   get "login" => "users#login_form"

@@ -6,10 +6,14 @@
 <p><%= @user.name %></p>
 <p><%= @user.email %></p>
 
-<% if @user.id == @current_user.id %>
+<% if @current_user.auth_type == 1 && @current_user.id == @user.id %>
+    <%= link_to("編集", "/users/#{@user.id}/edit") =%>
+    
+    <%= link_to("削除", "/users/#{@user.id}/destroy", {method: "post"}) =%>
+<% elsif @current_user.auth_type == 1 %>
+    <%= link_to("削除", "/users/#{@user.id}/destroy", {method: "post"}) =%>
+<% elsif @user.id == @current_user.id %>
     <%= link_to("編集", "/users/#{@user.id}/edit") =%>
     
     <%= link_to("削除", "/users/#{@user.id}/destroy", {method: "post"}) =%>
 <% end %>
-
-<%= link_to("戻る", "/posts/index") =%>
