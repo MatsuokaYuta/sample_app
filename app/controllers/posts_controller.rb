@@ -40,6 +40,12 @@ class PostsController < ApplicationController
   def update
     @post = Post.find_by(id: params[:id])
     @post.content = params[:content]
+    if params[:image]
+      @post.image_name = "#{@post.id}.jpg"
+      image = params[:image]
+      File.binwrite("public/posts_images/#{@post.image_name}", image.read)
+      @post.save
+    end
     if @post.save
       # 保存できた場合
       flash[:notice] = "投稿を編集しました"
@@ -60,8 +66,11 @@ class PostsController < ApplicationController
   def ensure_correct_user
     @post = Post.find_by(id: params[:id])
     if @post.user_id != @current_user.id
-      flash[:notice] = "権限がありません"
-      redirect_to("/posts/index")
+      if @current_user.auth_type == 1
+      else
+        flash[:notice] = "権限がありません"
+        redirect_to("/posts/index")
+      end
     end
   end
 end
