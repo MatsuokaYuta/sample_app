@@ -36,6 +36,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     @user.name = params[:name]
     @user.email = params[:email]
+    @user.password = params[:password]
     if @user.save
       flash[:notice] = "ユーザー情報を編集しました"
       redirect_to("/users/#{@user.id}")
@@ -56,21 +57,12 @@ class UsersController < ApplicationController
   def login_form
   end
   
-  def administrayor_login_form
-  end
-  
   def login
     @user = User.find_by(name: params[:name], password: params[:password])
     if @user
-      if @user.auth_type == 1
-        # 管理者なら
-        flash[:notice] ="管理者用ログインページからログインしてください"
-        redirect_to("/administrayor_login")
-      else
-        session[:user_id] = @user.id
-        flash[:notice] ="ログインしました"
-        redirect_to("/posts/index")
-      end
+      session[:user_id] = @user.id
+      flash[:notice] ="ログインしました"
+      redirect_to("/posts/index")
     else
       @error_message = "ユーザー名、またはパスワードが間違っています"
       @name = params[:name]
@@ -78,47 +70,7 @@ class UsersController < ApplicationController
       render("users/login_form")
     end
   end
-  
-  # def administrayor_login
-  #   @user = User.find_by(name: params[:name], password: params[:password])
-  #   if @user.auth_type == 1
-  #     # 管理者なら
-  #     if @user
-  #     session[:user_id] = @user.id
-  #     flash[:notice] ="ログインしました"
-  #     redirect_to("/users/index")
-  #     else
-  #       @error_message = "ユーザー名、またはパスワードが間違っています"
-  #       @name = params[:name]
-  #       @password = params[:password]
-  #       render("users/administrayor_login_form")
-  #     end
-  #   else
-  #     # 管理者じゃないなら
-  #     flash[:notice] = "そのユーザーは管理者ではありません"
-  #     render("users/administrayor_login_form")
-  #   end
-  # end
-  
-  def administrayor_login
-    @user = User.find_by(name: params[:name], password: params[:password])
-    if @user
-      if @user.auth_type == 1
-        session[:user_id] = @user.id
-        flash[:notice] ="ログインしました"
-        redirect_to("/users/index")
-      else
-        flash[:notice] = "そのユーザーは管理者ではありません"
-        render("users/administrayor_login_form")
-      end
-    else
-      @error_message = "ユーザー名、またはパスワードが間違っています"
-      @name = params[:name]
-      @password = params[:password]
-      render("users/administrayor_login_form")
-    end
-  end
-  
+
   def logout
     session[:user_id] = nil
     flash[:notice] ="ログアウトしました"
