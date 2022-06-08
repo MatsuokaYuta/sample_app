@@ -1,5 +1,8 @@
 <p><%= link_to(@user.name, "/users/#{@user.id}") %></p>
 <p><%= @post.content %></p>
+<% if @post.image_name != nil %>
+    <image src="<%= "/posts_images/#{@post.image_name}" %>">
+<% end %>
 <p><%= @post.created_at %></p>
 
 <% if @post.user_id == @current_user.id %>

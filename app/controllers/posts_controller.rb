@@ -20,6 +20,12 @@ class PostsController < ApplicationController
     if @post.save
       # 保存できた場合
       flash[:notice] = "投稿を作成しました"
+      if params[:image]
+        @post.image_name = "#{@post.id}.jpg"
+        image = params[:image]
+        File.binwrite("public/posts_images/#{@post.image_name}", image.read)
+        @post.save
+      end
       redirect_to("/posts/index")
     else
       # 保存できなかった場合

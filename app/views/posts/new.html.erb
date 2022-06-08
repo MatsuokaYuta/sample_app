@@ -5,8 +5,10 @@
     <p><%= message %></p>
 <% end %>
 
-<%= form_tag("/posts/create") do %>
+<%= form_tag("/posts/create", {multipart: true}) do %>
     <textarea name="content"><%= @post.content %></textarea>
+    <p>画像</p>
+    <input name="image" type="file">
     <input type="submit" value="投稿"></input>
 <% end %>
 

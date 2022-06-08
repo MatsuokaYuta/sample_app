@@ -79,8 +79,12 @@ class UsersController < ApplicationController
   
   def ensure_correct_user
     if @current_user.id != params[:id].to_i
-      flash[:notice] = "権限がありません"
-      redirect_to("/posts/index")
+      if @current_user.auth_type == 1
+      # 管理者は編集できる
+      else
+        flash[:notice] = "権限がありません"
+        redirect_to("/posts/index")
+      end
     end
   end
 end
